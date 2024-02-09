@@ -1,0 +1,119 @@
+<form #update="ngForm" *ngFor="let product of products; let i = index" class="p-3 mb-5 bg-first-300/70 capitalize">
+	<!--Name-->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Nombre</p>
+		<div>
+			<div *ngIf="!isEditing(i)" class="flexcapitalize">
+				<p>{{ product.name }}</p>
+			</div>
+			<div *ngIf="isEditing(i)" class="flex  hover:bg-first-600/50">
+				<input class="w-11/12 rounded capitalize px-1 h-6 text-first-950" [(ngModel)]="product.name" type="text" name="name" [placeholder]="product.name">
+			</div>
+		</div>
+	</div>
+	<!--Description-->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Descripcion</p>
+		<div>
+			<div *ngIf="!isEditing(i)">
+				<p>{{ product.description }}</p>
+			</div>
+			<div *ngIf="isEditing(i)">
+				<textarea type="text" class="w-11/12 h-24 rounded p-2" [(ngModel)]="product.description" name="description" [placeholder]="product.description"></textarea>
+			</div>
+		</div>
+	</div>
+	<!-- Price -->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Precio</p>
+		<div>
+			<div *ngIf="!isEditing(i)">
+				<p>{{ product.price | currency }}</p>
+			</div>
+			<div *ngIf="isEditing(i)">
+				<input class="w-11/12 rounded px-2 h-6 text-first-950" placeholder="{{ product.price }}" type="number" [(ngModel)]="product.price" name="price" id="">
+			</div>
+		</div>
+	</div>
+	<!-- Category -->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Categoria</p>
+		<div>
+			<div *ngIf="!isEditing(i)">
+				<p>{{ product.Category }}</p>
+			</div>
+			<div *ngIf="isEditing(i)">
+				<input id="category" type="hidden" *ngIf="selectedValue" [(ngModel)]="selectedValue" name="category">
+				<input id="category" type="hidden" *ngIf="!selectedValue" [(ngModel)]="product.Category" name="category">
+				<div class="select-box relative w-full mb-2 flex flex-col justify-center items-center">
+					<div (click)="openOption(i)" id="select" class="contentSelect w-5/6 h-8 leading-8 capitalize bg-white hover:border hover:border-first-600 box-border cursor-pointer rounded px-2">
+						{{ selectedValue }} <p *ngIf="!selectedValue">{{ product.Category }}</p>
+					</div>
+					<div class="absolute cursor-pointer right-10" (click)="openOption(i)">
+						<fa-icon [icon]="faAngleDown"></fa-icon>
+					</div>
+					<div id="options"  class="w-5/6 absolute h-32 overflow-y-scroll z-10 translate-y-20 rounded-b-md hidden">
+						<div class="option pl-2 w-full h-8 flex items-center cursor-pointer relative bg-first-50 border-b border-first-400 mx-auto hover:bg-first-500 hover:text-white" (click)="handleAClick(category, i)" *ngFor="let category of categories">{{ category }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Avalaible -->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Disponible</p>
+		<div *ngIf="!isEditing(i)">
+			<p *ngIf="product.avalaible === false">No</p>
+			<p *ngIf="product.avalaible === true">Si</p>
+		</div>
+		<div *ngIf="isEditing(i)">
+			<p>{{ product.avalaible }}</p>
+			<label class="relative inline-flex cursor-pointer items-center">
+        <input id="switch" type="checkbox" name="avalaible" [(ngModel)]="product.avalaible" class="peer sr-only" (change)="product.avalaible"/>
+        <label for="switch" class="hidden"></label>
+        <div class="peer text-sm font-semibold h-10 w-[4.90rem] rounded-full border bg-zinc-400 after:absolute after:left-[2px] after:top-0.5 after:h-9 after:w-[2.30rem] after:rounded-full after:px-2 peer-checked:after:px-3 after:py-[0.37rem] after:border after:border-gray-300 after:bg-white after:transition-all after:content-['No'] peer-checked:after:content-['Si'] peer-checked:bg-first-400 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
+      </label>
+		</div>
+	</div>
+
+	<!-- Image -->
+	<div>
+		<p class="font-bold text-xl text-white uppercase">Imagenes</p>
+		<div>
+			<div *ngIf="!isEditing(i)">
+				<div class="flex justify-between mb-2">
+					<div class="flex justify-center items-center w-3/6">
+						<img src="{{ product.imageSm }}" alt="Imagen Icon" class="rounded-full">
+					</div>
+					<img src="{{ product.imageMd }}" alt="Imagen Mediana">
+				</div>
+				<img src="{{ product.imageLg }}" alt="Imagen Grande" class="mb-2">
+			</div>
+			<div *ngIf="isEditing(i)">
+				<div class="rounded-t border border-b-first-200 w-5/6 h-16 bg-white justify-center flex flex-col items-center px-6">
+					<p class="text-xs mb-2">Foto 10 x 10</p>
+					<input class="h-8 w-full" type="file" [(ngModel)]="product.imageSm" name="imageSm">
+				</div>
+				<div class="border border-b-first-200 w-5/6 h-16 bg-white justify-center flex flex-col items-center px-6">
+					<p class="text-xs mb-2">Foto 116 x 131</p>
+					<input class="h-8 w-full" name="imagemd" type="file" [(ngModel)]="product.imageMd" name="imageMd">
+				</div>
+				<div class="rounded-b w-5/6 h-16 bg-white flex flex-col justify-center items-center px-6">
+					<p class="text-xs mb-2">Foto 368 x 208</p>
+					<input class="h-8 w-full" type="file" [(ngModel)]="product.imageLg" name="imageLg">
+				</div>
+			</div>
+		</div>
+	</div>
+	<button class="border w-2/6 h-12 text-center bg-first-300 border-first-950 hover:bg-first-600/50 hover:border-first-500 rounded-full mt-5 mr-20" *ngIf="!isEditing(i)" (click)="toggleEdit(i)"><fa-icon [icon]="faPancil"></fa-icon></button>
+	<button class="border w-2/6 h-12 text-center bg-first-300 border-first-950 hover:bg-first-600/50 hover:border-first-500 rounded-full" *ngIf="!isEditing(i)" [swal]="deletePop"><fa-icon [icon]="faTrash"></fa-icon></button>
+	<swal #updatePop title="¿Actualizar Producto?" text="¿Quieres Actualizar {{product.name}}?" (confirm)="updateProduct(i, product.id!, update); updated.fire" confirmButtonText="Actualizar" [swalOptions]="{ toast: false, showConfirmButton: true, showCancelButton: true, cancelButtonColor: 'red', confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="question"></swal>
+	<swal #deletePop title="¿Eliminar Producto?" text="¿Quieres Eliminar {{product.name}}?" (confirm)="deleteProduct(this.product.name); deleted.fire" confirmButtonText="Eliminar Producto" [swalOptions]="{ toast: false, showConfirmButton: true, showCancelButton: true, cancelButtonColor: 'red', confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="warning"></swal>
+	<swal #deleted title="{{ product.name }} Eliminado con exito" [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="success"></swal>
+	<swal #updated title="{{ product.name }} Actualizado con exito" [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="success"></swal>
+	<button class="w-[14ch] mr-20 h-10 p-1 rounded text-sm border border-first-900 uppercase text-white bg-first-800/40 mt-5" *ngIf="isEditing(i)" (click)="toggleEdit(i)">Cancelar</button>
+	<button class="w-[14ch] h-10 p-1 rounded text-sm border border-first-900 uppercase text-white bg-first-800/40" *ngIf="isEditing(i)" [swal]="updatePop">Actualizar</button>
+</form>
+<div *ngIf="load === true" class="w-full h-[28rem] flex justify-center items-center gap-2">
+	<div class=""><h2 class="animate-pulse font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-first-500 rounded-full"></div></div>
+</div>  

@@ -1,0 +1,90 @@
+<div class="">
+  <div class="w-10 h-10 rounded-full border-first-200 bg-first-300/50 hover:bg-first-500 hover:border-white text-white border ">
+    <a (click)="openCart()" class="w-full h-full flex justify-center items-center">
+      <fa-icon [icon]="faReceipt"></fa-icon>
+    </a>
+  </div>
+  <div id="cart" class="fixed hidden top-5 left-6 p-4 bg-black/80 w-96 border-4 border-yellow-200 rounded-md">
+    <h1 class="text-center font-bold text-3xl text-white mb-2">Tu Pedido</h1>
+    <!--Start Product-->
+    <div class="h-80 mb-2 rounded-md overflow-y-scroll relative">
+      <p class="text-center font-bold text-xl text-white" *ngIf="!cart.items.length">No has agregado productos a tu pedido.</p>
+      <div *ngFor="let item of cart.items; let i = index" class="border border-yellow-300 rounded-md p-2 mb-5">
+        <div class="flex w-full">
+          <img src="{{ item.img!! }}" onerror="" alt="Producto" class="w-14 h-14 rounded-full mr-2">
+        <p class="h-14 font-bold text-yellow-50 uppercase font-blod align-middle text-lg">{{ item.name }}</p>
+        </div>
+        <div class="flex pl-14">
+          <p class=" font-medium text-yellow-100 h-8 leading-8 text-center mr-5"><strong>Cantidad:</strong> {{ item.quantity }}</p>
+          <p class=" font-medium text-yellow-100 h-8 leading-8 text-center"><strong>Valor:</strong> {{ item.price | currency }}</p>
+        </div>
+        <div *ngIf="item.comment.length || editingComment === true" class="text-first-100 pl-2 mb-2">
+          <h2><strong>Tu Comentario: </strong></h2>
+          <p *ngIf="!editingComment">{{ item.comment }}</p>
+          <div class="flex " *ngIf="editingComment"><button class="w-10 border border-first-300 rounded-l-md bg-first-500/50 text-center text-white" (click)="onCancelEditComment()"><fa-icon [icon]="faClose"></fa-icon></button><input class="text-first-950 px-2" type="text" [(ngModel)]="item.comment" ></div>
+        </div>
+        <div class="flex px-5 justify-between">
+          <swal #popUpAlert title="{{ item.name }}removido de tu orden." [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="info"></swal>
+          <button [swal]="popUpAlert" (click)="onRemoveFromCart(item)" class="w-20 h-10 text-white bg-first-500/50 rounded-md border border-first-300">
+            <fa-icon [icon]="faBan"></fa-icon>
+          </button>
+          <div class="w-20 h-10 border-2 flex border-first-300 rounded-md mb-2 hover:border-3 hover:border-first-100">
+            <button  class="w-6 rounded-md rounded-r-none bg-first-500/50 text-white" (click)="onRemoveQuantity(item)">
+              -
+            </button>
+            <span class="w-8 leading-10 bg-first-100 text-first-950 text-center">{{ item.quantity }}</span>
+            <input type="hidden" name="quantity">
+            <button class="rounded-md rounded-l-none bg-first-500/50 text-white w-6" (click)="onAddQuantity(item)">
+              +
+            </button>          
+          </div>
+          <button class="w-20 h-10 text-white bg-first-500/50 rounded-md border border-first-300" (click)="onEditingComment()">
+            <fa-icon [icon]="faPenToSquare"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Product -->
+    <div class="rounded-md border border-yellow-200 mb-5" >
+      <div class="flex justify-between px-2 border-b border-yellow-300 text-yellow-50 font-semibold">
+        <p class="text-center w-8/12">Tota Productos</p>
+        <p class="w-4/12 border-l border-yellow-300 text-center">Valor total</p>
+      </div>
+      <div class="flex justify-between px-2 text-white font-bold">
+        <p class="w-8/12 text-center">{{ calculateTotal(cart.items) }}</p>
+        <p class="w-4/12 border-l border-yellow-300 text-center">{{ getTotal(cart.items) | currency }}</p>
+      </div>
+    </div>
+    <div class="flex justify-between mb-5">
+      <swal #emptyCart title="Eliminar Orden" text="Quieres Eliminar Tu Orden?" (confirm)="onClearCart()" confirmButtonText="Eliminar" [swalOptions]="{ toast: false, showConfirmButton: true, confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="warning"></swal>
+      <swal #Oops title="Oops!" text="Esta Funcion no esta implementada aun :/" [swalOptions]="{ toast: false, showConfirmButton: true, confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="warning"></swal>
+      <button class="border border-yellow-400 rounded-md w-36 p-2 bg-first-500/50 text-white" [swal]="emptyCart">Eliminar Todo<fa-icon class="ml-1" [icon]="faTrashCan"></fa-icon></button>
+      <button (click)="startPayment()" class="border border-yellow-400 rounded-md w-36 p-2 bg-first-500/50 text-white hidden" [swal]="Oops">Pagar <fa-icon class="ml-1" [icon]="faDollar"></fa-icon></button>
+    </div>
+    <div class="flex justify-end">
+      <button class="w-10 h-10 rounded-full border border-first-300 bg-first-400 text-white" (click)="openCart()"><fa-icon [icon]="faClose"></fa-icon></button>
+    </div>
+  </div>
+
+  <div class="hidden">
+    <form class="" >
+      <div>
+        <label for="clientName">Nombre</label>
+        <input name="clientName" type="text">
+      </div>
+      <div>
+        <label for="mail">Correo Electronico</label>
+        <input name="mail" type="text">
+      </div>
+      <div>
+        <label for="location">Direccion</label>
+        <input name="location" type="text">
+      </div>
+      <div>
+        <button>Cancelar</button>
+        <button>Continuar al Pago</button>
+      </div>
+    </form>
+  </div>
+
+</div>

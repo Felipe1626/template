@@ -1,0 +1,64 @@
+<div id="up">
+  <img src="../assets/HDarkLogo.png" class="rounded-full w-full mx-auto" alt="Logo Big Bite">
+  <h1 class="text-first-100 ml-3 -translate-y-5 text-6xl font-black uppercase text-center"> Menu </h1>  
+  <nav id="menu-nav" class="w-full sticky top-0 z-10 bg-first-500/5 overflow-scroll overflow-y-hidden mb-5" >
+    <div class="flex mb-1">
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#entradas">Entradas</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#ensaladas">Ensaladas</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#carnes">Carnes</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#pescados">Pescados</a>
+    </div>
+    <div class="flex mb-1">
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#platos principales">Platos Principales</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#sopas">Sopas</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#bebidas">Bebidas</a>
+      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-first-500/80 text-white border border-second-300 rounded-md uppercase font-bold" href="#postres">Postres</a>
+    </div>
+  </nav>
+  <app-products></app-products>
+  <div id="contact" class="p-3 bg-first-500/50 mb-10 rounded-md border-2 border-second-500">
+    <h2 class="uppercase text-2xl text-white font-bold text-center mb-2">Contactanos</h2>
+    <div class="flex justify-center">
+      <div class="bord mr-2 uppercase">
+          <a target="_blank" rel="no-referrer" href="https://wa.me/message/" class="mb-3 h-10 w-32 text-green-100 bg-green-400/60 hover:bg-green-200 border-green-200 hover:text-green-500 block p-1 border text-center font-semibold rounded">
+            <h2 class="text-xs">whatsapp <fa-icon class="font-bold text-xl" [icon]="faWhatsapp"></fa-icon></h2>
+          </a>
+          <a target="_blank" rel="no-referrer" href="https://instagram.com/" class="mb-3 h-10 text-first-100 bg-gradient-to-tr from-yellow-300 from-10% via-red-400 via-60% to-purple-500 to-100% hover:border-purple-300 border-purple-300 hover:text-purple-900 block p-1 border w-32 text-center font-semibold rounded">
+            <h2 class="text-xs">instagram <fa-icon class="font-bold text-xl" [icon]="faInstagram"></fa-icon></h2>
+          </a>
+          <a target="_blank" rel="no-referrer" href="https://facebook.com/" class="h-10 text-blue-50 bg-blue-500/70 hover:bg-blue-200 border-blue-300 hover:text-blue-500 block p-1 border w-32 text-center font-semibold rounded">
+            <h2 class="text-xs">facebook <fa-icon class="font-bold text-xl" [icon]="faFacebook"></fa-icon></h2>
+          </a>
+      </div>
+      <div class="uppercase text-first-50">
+        <a target="_blank" rel="no-referrer" href="tel: " class="h-10 text-cyan-50 bg-gradient-to-tr from-second-600 from-20% to-20% to-first-600/70 hover:bg-gradient-to-bl border-first-300 hover:text-white block p-1 border w-32 mb-3 text-center font-semibold rounded">
+          <h2 class="text-xs">+1 123 4567 8912<fa-icon class="font-bold text-xl ml-1" [icon]="faMobilePhone"></fa-icon></h2>
+        </a>
+        <a target="_blank" rel="no-referrer" href="tel: " class="h-10 text-cyan-50 bg-gradient-to-tr from-second-600 from-20% to-20% to-first-600/70 hover:bg-gradient-to-bl border-first-300 hover:text-white block p-1 border w-32 mb-3 text-center font-semibold rounded">
+          <h2 class="text-xs">(2) 123-4567 <fa-icon class="font-bold text-xl ml-1" [icon]="faPhoneFlip"></fa-icon></h2>
+        </a>
+        <a target="_blank" rel="no-referrer" href="https://goo.gl/maps/" class="text-green-50 h-10 bg-gradient-to-tr to-green-600 from-20% hover:bg-gradient-to-bl from-second-600 to-20% hover:bg-green-200 border-green-50 hover:text-green-900 block p-1 border w-32 mb-3 text-center font-semibold rounded">
+          <h2 class="text-xs text-white">visitanos<fa-icon class="font-bold text-xl ml-1" [icon]="faLocationDot"></fa-icon></h2>
+        </a>     
+      </div>
+    </div>
+    <div class="capitalize text-first-50 text-center">
+        <a target="_blank" rel="no-referrer" href="https://goo.gl/maps/">Direccion de ejemplo</a>
+    </div>
+  </div>
+</div>
+<div class="sticky z-20 bottom-1 w-full flex justify-center items-center">
+  <div class="w-48 px-5 h-14 justify-between items-center flex border-first-50 border rounded-full bg-black">
+    <app-cart></app-cart>
+    <div class="w-10 h-10 rounded-full border-first-200 bg-first-300/50 hover:bg-first-500 hover:border-white text-white border">
+      <a href="#up" class="w-full h-full flex justify-center items-center">
+        <fa-icon [icon]="faArrowUp"></fa-icon>
+      </a>
+    </div>
+    <div class="w-10 h-10 rounded-full border-first-200 bg-first-300/50 hover:bg-first-500 hover:border-white text-white border ">
+      <a href="#contact" class="w-full h-full flex justify-center items-center">
+        <fa-icon [icon]="faPhone"></fa-icon>
+      </a>
+    </div>
+  </div>  
+</div>
