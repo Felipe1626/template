@@ -1,8 +1,7 @@
 <div class="relative">
     <div *ngFor="let category of categories">
       <h2 class="text-white text-2xl font-extra-extrabold uppercase text-center mb-2" [ngClass]="{'bg-clip-text text-transparent bg-gradient-to-r from-red-950 via-white to-blue-950 animate-pulse': load}" id="{{category}}">{{category}}</h2>
-      
-      <div *ngFor="let product of products[category]; let i = index" class="product_cart relative grid grid-cols-3 grid-rows-3 rounded-md border-2 border-first-300 mb-5 p-1 px-2 h-52 text-first-50 bg-first-600/70">
+      <div *ngFor="let product of products[category]; let i = index" class="product_cart relative grid grid-cols-3 grid-rows-3 rounded-md border-2 border-first-300 mb-5 p-1 px-2 h-56 text-first-50 bg-first-600/70">
           <div class="w-full col-span-2 row-span-2 gap-3">
             <h3 class="text-lg font-bold uppercase text-white">{{ product.name }}</h3>
             <p class="capitalize">{{ product.description }}</p>
@@ -81,7 +80,7 @@
           
         </div>
         <div *ngIf="load === true" class="w-full h-[28rem] flex justify-center items-center gap-2">
-          <div class=""><h2 class="animate-pulse font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-first-500 rounded-full"></div></div>
+          <div class=""><h2 class="animate-pulse text-white font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-first-500 rounded-full"></div></div>
         </div>  
     </div>
   </div>
