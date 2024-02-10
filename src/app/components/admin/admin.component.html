@@ -1,4 +1,4 @@
-<nav class="w-full mb-2">
+<nav class="sticky top-0 z-50 bg-second-50 w-full mb-2">
   <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'add'}" (click)="actualPage = 'add'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50 rounded-t"> Nuevo Producto</button>   
   <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'manage'}" (click)="actualPage = 'manage'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50 border-y border-first-300">Administrar Productos</button>
   <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'avalaibles'}" (click)="actualPage = 'avalaibles'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50">Disponibles</button>
