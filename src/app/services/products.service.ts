@@ -95,7 +95,7 @@ export class ProductsService {
     const { data, error } = await this.supabase
       .storage
       .from('product_img')
-      .createSignedUrl(`public/${imageName}`, 60);
+      .createSignedUrl(`public/${imageName}`, 6000);
 
     if (error) {
       console.error(`Error getting the signed URL for image: ${imageName}`);
