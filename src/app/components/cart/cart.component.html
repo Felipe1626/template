@@ -1,5 +1,5 @@
 <div class="">
-  <div class="w-10 h-10 rounded-full border-first-200 bg-first-300/50 hover:bg-first-500 hover:border-white text-white border ">
+  <div class="w-10 h-10 rounded-full cursor-pointer border-first-300 bg-first-300/30 hover:bg-first-800/80 hover:border-white text-white border ">
     <a (click)="openCart()" class="w-full h-full flex justify-center items-center">
       <fa-icon [icon]="faReceipt"></fa-icon>
     </a>
@@ -23,7 +23,7 @@
           <p *ngIf="!editingComment">{{ item.comment }}</p>
           <div class="flex " *ngIf="editingComment"><button class="w-10 border border-first-300 rounded-l-md bg-first-500/50 text-center text-white" (click)="onCancelEditComment()"><fa-icon [icon]="faClose"></fa-icon></button><input class="text-first-950 px-2" type="text" [(ngModel)]="item.comment" ></div>
         </div>
-        <div class="flex px-5 justify-between">
+        <div class="flex gap-2 justify-end">
           <swal #popUpAlert title="{{ item.name }}removido de tu orden." [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="info"></swal>
           <button [swal]="popUpAlert" (click)="onRemoveFromCart(item)" class="w-20 h-10 text-white bg-first-500/50 rounded-md border border-first-300">
             <fa-icon [icon]="faBan"></fa-icon>
@@ -32,13 +32,13 @@
             <button  class="w-6 rounded-md rounded-r-none bg-first-500/50 text-white" (click)="onRemoveQuantity(item)">
               -
             </button>
-            <span class="w-8 leading-10 bg-first-100 text-first-950 text-center">{{ item.quantity }}</span>
+            <span class="w-8 leading-10 bg-first-100 text-second-950 text-center">{{ item.quantity }}</span>
             <input type="hidden" name="quantity">
             <button class="rounded-md rounded-l-none bg-first-500/50 text-white w-6" (click)="onAddQuantity(item)">
               +
             </button>          
           </div>
-          <button class="w-20 h-10 text-white bg-first-500/50 rounded-md border border-first-300" (click)="onEditingComment()">
+          <button class="w-20 h-10 hidden text-white bg-first-500/50 rounded-md border border-first-300" (click)="onEditingComment()">
             <fa-icon [icon]="faPenToSquare"></fa-icon>
           </button>
         </div>
@@ -62,7 +62,7 @@
       <button (click)="startPayment()" class="border border-yellow-400 rounded-md w-36 p-2 bg-first-500/50 text-white hidden" [swal]="Oops">Pagar <fa-icon class="ml-1" [icon]="faDollar"></fa-icon></button>
     </div>
     <div class="flex justify-end">
-      <button class="w-10 h-10 rounded-full border border-first-300 bg-first-400 text-white" (click)="openCart()"><fa-icon [icon]="faClose"></fa-icon></button>
+      <button class="w-10 h-10 rounded-full border border-first-300 bg-first-300/30 hover:bg-first-800/80 hover:border-white text-white" (click)="openCart()"><fa-icon [icon]="faClose"></fa-icon></button>
     </div>
   </div>
 
