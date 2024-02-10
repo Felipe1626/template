@@ -3,21 +3,21 @@
 	<div class="">
 		<div class="w-full my-2 flex flex-col justify-center items-center">
 			<p class="w-5/6 cursor-default">Nombre del Producto</p>
-			<input class="w-5/6 h-8 rounded px-2 capitalize" type="text" ngModel placeholder="ej... pollo" name="name" id="productName">
+			<input class="w-5/6 h-8 rounded px-2 capitalize" type="text" ngModel placeholder="ej... Bistec a la parrilla" name="name" id="productName">
 		</div>
 		<div class="w-full mb-2 flex flex-col justify-center items-center">
 			<p class="w-5/6 cursor-default">Descripcion del producto</p>
-			<input class="w-5/6 h-8 rounded px-2 capitalize" type="text" ngModel placeholder="ej... pollo al horno" name="description">
+			<input class="w-5/6 h-8 rounded px-2 capitalize" type="text" ngModel placeholder="ej... Filete de carne roja a la parrilla" name="description">
 		</div>
 		<div class="w-full mb-2 flex flex-col justify-center items-center">
 			<p class="w-5/6 cursor-default">Precio</p>
-			<input class="w-5/6 h-8 rounded px-2 capitalize" placeholder="ej... 20.000" type="number" step="0.001" min="1.000" max="100.000" lang="es"  ngModel name="price" id="">
+			<input class="w-5/6 h-8 rounded px-2 capitalize" placeholder="ej... $25" type="number" step="0.001" min="1.000" max="100.000" lang="es"  ngModel name="price" id="">
 		</div>
 		
 		<div class="flex mx-auto justify-between mt-1 w-5/6">
 			<p class=" cursor-default">Categoria</p>
-			<a (click)="newCategory = true" *ngIf="!newCategory" class="text-[8px] font-semibold h-8 border mb-1 border-first-500 bg-first-300 hover:bg-first-500 hover:text-white hover:border-first-50 p-1 rounded cursor-pointer uppercase"><fa-icon [icon]="faAdd" class="mr-1 text-sm"></fa-icon>Categoria</a>
-			<a (click)="newCategory = false" *ngIf="newCategory" class="text-[8px] font-semibold h-8 border mb-1 border-first-500 bg-first-300 hover:bg-first-500 hover:text-white hover:border-first-50 p-1 rounded cursor-pointer uppercase"><fa-icon [icon]="faAdd" class="mr-1 text-sm relative rotate-45" ></fa-icon>Cancelar</a>
+			<a (click)="newCategory = true" *ngIf="!newCategory" class="text-[8px] font-semibold h-8 border mb-1 border-first-500 bg-first-200 hover:bg-second-900 hover:text-white hover:border-first-50 p-1 rounded cursor-pointer uppercase"><fa-icon [icon]="faAdd" class="mr-1 text-sm"></fa-icon>Categoria</a>
+			<a (click)="newCategory = false" *ngIf="newCategory" class="text-[8px] font-semibold h-8 border mb-1 border-first-500 bg-first-200 hover:bg-second-900 hover:text-white hover:border-first-50 p-1 rounded cursor-pointer uppercase"><fa-icon [icon]="faAdd" class="mr-1 text-sm relative rotate-45" ></fa-icon>Cancelar</a>
 		</div>
 		<input *ngIf="newCategory" class="w-5/6 mx-auto rounded-md px-2 h-8 flex" type="text" ngModel name="category" id="" autofocus="true" aut>
 		<div *ngIf="!newCategory" class="select-box relative w-full mb-2 flex flex-col justify-center items-center">
@@ -27,8 +27,8 @@
 			<div class="absolute cursor-pointer right-10" (click)="openOptions()">
 				<fa-icon [icon]="faAngleDown"></fa-icon>
 			</div>
-			<div id="options" class="w-5/6 absolute h-auto overflow-y-scroll z-10 top-8 rounded-b-md hidden">
-				<div class="option pl-2 w-full h-8 flex items-center cursor-pointer relative bg-first-50 border-b border-first-400 mx-auto hover:bg-first-500 hover:text-white" (click)="handleAnchorClick(category)" *ngFor="let category of categories">{{ category }}</div>
+			<div id="options" class="w-5/6 absolute border border-second-50 border-t-0 h-auto overflow-y-scroll z-10 top-8 rounded-b-md hidden">
+				<div class="option pl-2 w-full h-8 flex items-center cursor-pointer relative bg-first-50 border-b border-first-400 mx-auto hover:bg-second-900 hover:text-white" (click)="handleAnchorClick(category)" *ngFor="let category of categories">{{ category }}</div>
 			</div>
 		</div>
 		<div class="w-5/6 mx-auto mb-2 flex justify-start items-center">
@@ -57,7 +57,7 @@
 		<input *ngIf="!newCategory" id="category" type="hidden" [(ngModel)]="selectedValue" name="category" value="{{selectedValue}}">
 		<div class="w-full mb-2 flex flex-col justify-center items-center">
 			<swal #addedToCart title="{{ form.name }} añadido con exito." [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="success"></swal>
-			<button class="w-5/6 h-9 rounded uppercase bg-blue-100/80 text-blue-600 hover:bg-blue-600 hover:text-blue-100 font-extrabold border border-first-50" [swal]="addedToCart" (click)="onFormSubmit(form)">Agregar producto</button>
+			<button class="w-5/6 h-9 rounded uppercase bg-first-100/80 text-second-600 hover:bg-second-600 hover:text-first-100 font-extrabold border border-first-300" [swal]="addedToCart" (click)="onFormSubmit(form)">Agregar producto</button>
 		</div>
   </div>
 </form>

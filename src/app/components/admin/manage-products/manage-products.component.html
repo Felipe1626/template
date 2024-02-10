@@ -107,7 +107,7 @@
 	</div>
 	<button class="border w-2/6 h-12 text-center bg-first-300 border-first-950 hover:bg-first-600/50 hover:border-first-500 rounded-full mt-5 mr-20" *ngIf="!isEditing(i)" (click)="toggleEdit(i)"><fa-icon [icon]="faPancil"></fa-icon></button>
 	<button class="border w-2/6 h-12 text-center bg-first-300 border-first-950 hover:bg-first-600/50 hover:border-first-500 rounded-full" *ngIf="!isEditing(i)" [swal]="deletePop"><fa-icon [icon]="faTrash"></fa-icon></button>
-	<swal #updatePop title="¿Actualizar Producto?" text="¿Quieres Actualizar {{product.name}}?" (confirm)="updateProduct(i, product.id!, update); updated.fire" confirmButtonText="Actualizar" [swalOptions]="{ toast: false, showConfirmButton: true, showCancelButton: true, cancelButtonColor: 'red', confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="question"></swal>
+	<swal #updatePop title="¿Actualizar Producto?" text="¿Quieres Actualizar {{product.name}}?" (confirm)="updateProduct(i, product.id!, update); toggleEdit(i); updated.fire" confirmButtonText="Actualizar" [swalOptions]="{ toast: false, showConfirmButton: true, showCancelButton: true, cancelButtonColor: 'red', confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="question"></swal>
 	<swal #deletePop title="¿Eliminar Producto?" text="¿Quieres Eliminar {{product.name}}?" (confirm)="deleteProduct(this.product.name); deleted.fire" confirmButtonText="Eliminar Producto" [swalOptions]="{ toast: false, showConfirmButton: true, showCancelButton: true, cancelButtonColor: 'red', confirmButtonColor: 'first', timer: 6000, timerProgressBar: true }" icon="warning"></swal>
 	<swal #deleted title="{{ product.name }} Eliminado con exito" [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="success"></swal>
 	<swal #updated title="{{ product.name }} Actualizado con exito" [swalOptions]="{ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true }" icon="success"></swal>
@@ -115,5 +115,5 @@
 	<button class="w-[14ch] h-10 p-1 rounded text-sm border border-first-900 uppercase text-white bg-first-800/40" *ngIf="isEditing(i)" [swal]="updatePop">Actualizar</button>
 </form>
 <div *ngIf="load === true" class="w-full h-[28rem] flex justify-center items-center gap-2">
-	<div class=""><h2 class="animate-pulse font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-first-500 rounded-full"></div></div>
+	<div class=""><h2 class="animate-pulse text-first-50 font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-second-500 rounded-full"></div></div>
 </div>  

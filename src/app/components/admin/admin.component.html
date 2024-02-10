@@ -1,19 +1,19 @@
 <nav class="w-full mb-2">
-  <button [ngClass]="{'font-bold text-white bg-first-950': actualPage === 'add'}" (click)="actualPage = 'add'" class="w-full h-14 text-center uppercase font-semibold bg-first-900 text-first-100 rounded-t"> Nuevo Producto</button>   
-  <button [ngClass]="{'font-bold text-white bg-first-950': actualPage === 'manage'}" (click)="actualPage = 'manage'" class="w-full h-14 text-center uppercase font-semibold bg-first-900 text-first-100 border-y border-yellow-500/80">Administrar Productos</button>
-  <button [ngClass]="{'font-bold text-white bg-first-950': actualPage === 'avalaibles'}" (click)="actualPage = 'avalaibles'" class="w-full h-14 text-center uppercase font-semibold bg-first-900 text-first-100">Disponibles</button>
+  <button [ngClass]="{'font-bold text-white !bg-second-950 border border-first-50': actualPage === 'add'}" (click)="actualPage = 'add'" class="w-full h-14 text-center uppercase font-semibold bg-first-800/30 text-first-100 rounded-t"> Nuevo Producto</button>   
+  <button [ngClass]="{'font-bold text-white !bg-second-950 border border-first-50': actualPage === 'manage'}" (click)="actualPage = 'manage'" class="w-full h-14 text-center uppercase font-semibold bg-first-800/30 text-first-100 border-y border-first-300">Administrar Productos</button>
+  <button [ngClass]="{'font-bold text-white !bg-second-950 border border-first-50': actualPage === 'avalaibles'}" (click)="actualPage = 'avalaibles'" class="w-full h-14 text-center uppercase font-semibold bg-first-800/30 text-first-100">Disponibles</button>
 </nav>
 <app-upload *ngIf="actualPage === 'add'"></app-upload>
 <app-manage-products *ngIf="actualPage === 'manage'"></app-manage-products>
 <section *ngIf="actualPage === 'avalaibles'">
-  <div class="w-5/6 h-16 bg-first-900 flex text-white justify-between items-center mx-auto px-2.5 rounded-t-md font-bold uppercase mb-2">
+  <div class="w-5/6 h-16 bg-second-900 border border-first-100  flex text-white justify-between items-center mx-auto px-2.5 rounded-t-md font-bold uppercase mb-2">
     <p class="w-4/6">Producto</p>
     <div class="w-2/6">
       Disponible
     </div>
   </div>
-  <div class="w-5/6 h-14 bg-first-900 flex justify-between items-center mx-auto px-2 rounded-b-md font-semibold capitalize border-b border-first-800/50 mb-2" *ngFor="let product of products">
-    <p class="w-4/6" [ngClass]="{'font-light text-gray-700': !product.avalaible}">{{ product.name }}</p>
+  <div class="w-5/6 h-14 bg-second-900 border border-first-200 flex justify-between items-center mx-auto px-2 rounded-b-md font-semibold capitalize border-b-first-800/70 mb-2 hover:shadow hover:shadow-first-50" *ngFor="let product of products">
+    <p class="w-4/6 text-first-300" [ngClass]="{'font-light text-first-50': !product.avalaible}">{{ product.name }}</p>
     <div class="w-2/6">
       <label class="relative inline-flex cursor-pointer items-center">
         <input id="switch" type="checkbox" name="highlighted" [(ngModel)]="product.avalaible" class="peer sr-only" (change)="updateProduct(product.name!, product.avalaible)"/>
@@ -23,6 +23,6 @@
     </div>
   </div>
   <div *ngIf="load === true" class="w-full h-[28rem] flex justify-center items-center gap-2">
-    <div class=""><h2 class="animate-pulse font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-first-900 rounded-full"></div></div>
+    <div class=""><h2 class="animate-pulse text-first-50 font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-second-900 rounded-full"></div></div>
   </div>  
 </section>
