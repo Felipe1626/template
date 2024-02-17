@@ -1,5 +1,18 @@
 <div id="up">
   <img src="../assets/HDarkLogo.png" class="rounded-full w-full mx-auto" alt="Logo Big Bite">
+  <h2 class="mb-2 text-3xl text-center uppercase text-white font-bold">Promos</h2>
+  <div class="relative overflow-hidden mb-16">
+    <div class="multi-slider-container flex items-center justify-between overflow-hidden w-[270px] h-[270px] mx-auto relative">
+      <div class="slider-track flex">
+        <div *ngFor="let image of displayedImages; let i = index" class="slider-item relative">
+          <!-- <video src="{{image!}}" autoplay muted class="w-fit h-full rounded object-fill //w-full"></video> -->
+          <img src="{{image!}}" class="w-fit h-full rounded" alt="{{ image }}"  class="object-fill h-full w-full">
+        </div>
+      </div>  
+      <button (click)="prev()" class="px-3 py-7 opacity-20 hover:opacity-50 bg-zinc-400 hover:shadow-md hover:shadow-white/80 rounded-md text-3xl font-black border border-transparent hover:border-zinc-50 text-white absolute left-3 top-[38.5%]"><fa-icon [icon]="faAngleLeft"></fa-icon></button>
+      <button (click)="next()" class="px-3 py-7 opacity-20 hover:opacity-50 bg-zinc-400 hover:shadow-md hover:shadow-white/80 rounded-md text-3xl font-black border border-transparent hover:border-zinc-50 text-white absolute right-3 top-[38.5%]"><fa-icon [icon]="faAngleRight"></fa-icon></button>
+    </div>
+  </div>
   <h1 class="text-white/95 ml-3 -translate-y-5 text-6xl font-black uppercase text-center"> Menu </h1>  
   <nav id="menu-nav" class="w-full sticky top-0 z-10 bg-first-500/5 overflow-scroll overflow-y-hidden mb-5" >
     <div class="flex mb-1">
@@ -9,13 +22,49 @@
       <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#pescados">Pescados</a>
     </div>
     <div class="flex mb-1">
-      <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#platos principales">Platos Principales</a>
+      <!-- <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#platos principales">Platos Principales</a> -->
       <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#sopas">Sopas</a>
       <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#bebidas">Bebidas</a>
       <a class="py-2 px-3 mr-2 whitespace-nowrap bg-second-500/90 text-white border border-first-300 rounded-md uppercase font-bold" href="#postres">Postres</a>
     </div>
   </nav>
+  
+  
+
   <app-products></app-products>
+
+  <h2 class="mb-2 mt-32 text-3xl text-center uppercase text-white font-bold">comentarios de nuestros clientes</h2>
+  <div class="relative overflow-hidden mb-32">
+    <div class="multi-slider-container flex items-center justify-between overflow-hidden w-[270px] h-[270px] mx-auto relative">
+      <div class="slider-track flex">
+        <div *ngFor="let review of displayedReviews; let i = index" class="slider-item relative">
+          <div class="w-[270px] h-[270px] bg-second-600/70 border border-first-300 rounded relative p-6 text-white">
+        
+            <h5 class="mb-5 block text-center font-sans text-2xl font-bold leading-snug tracking-normal text-blue-second-900 antialiased capitalize">
+              {{ review.clientName }}
+            </h5>
+            <div class="flex text-first-300/20 w-fit text-4xl mx-auto mb-5 gap-2">
+              <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 1}" [icon]="faStar"></fa-icon>
+              <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 2}" [icon]="faStar"></fa-icon>
+              <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 3}" [icon]="faStar"></fa-icon>
+              <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 4}" [icon]="faStar"></fa-icon>
+              <fa-icon [ngClass]="{'text-yellow-200': review.rate === 5}" [icon]="faStar"></fa-icon>
+            </div>
+            <p class="block font-sans font-semibold text-base leading-relaxed text-inherit antialiased first-letter:uppercase">
+              {{ review.review }}
+            </p>
+          </div>
+        </div>
+      </div>  
+      <button (click)="prevR()" class="px-3 py-7 opacity-10 hover:opacity-50 bg-zinc-400 hover:shadow-md hover:shadow-white/80 rounded-md text-3xl font-black border border-transparent hover:border-zinc-50 text-white absolute left-3 top-[38.5%]"><fa-icon [icon]="faAngleLeft"></fa-icon></button>
+      <button (click)="nextR()" class="px-3 py-7 opacity-10 hover:opacity-50 bg-zinc-400 hover:shadow-md hover:shadow-white/80 rounded-md text-3xl font-black border border-transparent hover:border-zinc-50 text-white absolute right-3 top-[38.5%]"><fa-icon [icon]="faAngleRight"></fa-icon></button>
+    </div>
+    <a href="" class="text-first-100 w-full block mt-2 text-center hover:animate-none underline animate-pulse">Dejanos tu comentario aqui</a>
+
+  </div>
+
+
+
   <div id="contact" class="p-3 bg-first-500/50 mb-10 rounded-md border-2 border-second-500">
     <h2 class="uppercase text-2xl text-white font-bold text-center mb-2">Contactanos</h2>
     <div class="flex justify-center">
