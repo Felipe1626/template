@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faBars, faBarsStaggered, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/products.model';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -10,11 +11,18 @@ import { ProductsService } from 'src/app/services/products.service';
 export class AdminComponent {
   products: Product[] = []
   isChecked: boolean = false
-  actualPage: string = 'avalaibles'
+  actualPage: string = 'Disponibilidad'
   load: boolean = false
+  isOpen: boolean = false
 
+  faBars = faBars
+  faBarsStaggered = faBarsStaggered
+  faXmark = faXmark
   constructor(private productsService: ProductsService){ }
 
+  openMenu(){
+    this.isOpen = !this.isOpen
+  }
 
   async updateProduct(name: string, newValue: boolean){    
     let isAvalaible: boolean = false;

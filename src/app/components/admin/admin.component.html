@@ -1,11 +1,24 @@
-<nav class="sticky top-0 z-50 bg-second-50 w-full mb-2">
-  <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'add'}" (click)="actualPage = 'add'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50 rounded-t"> Nuevo Producto</button>   
-  <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'manage'}" (click)="actualPage = 'manage'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50 border-y border-first-300">Administrar Productos</button>
-  <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'avalaibles'}" (click)="actualPage = 'avalaibles'" class="w-full h-14 text-center uppercase bg-first-950/5 font-semibold text-first-100/50">Disponibles</button>
+<nav class="sticky top-0 z-50 bg-first-300/50 w-full mb-2">
+  <h1 class="font-bold uppercase px-4 text-xl text-second-50 absolute top-4">{{actualPage}}</h1>
+  <button (click)="openMenu()" class="w-14 h-14 z-50 relative ml-[229px] my-1 rounded-full p-1 bg-[#ffde59]/20 active:rotate-90 active:transition group opacity-20 animate-pulse hover:opacity-100 hover:animate-none">
+    <span class="w-full h-full block border border-[#ffde59] bg-black/50 text-white text-lg font-bold text-center py-2 rounded-full group-hover:text-[#ffde59] group-hover:font-extrabold">
+      <fa-icon [icon]="faBars" class="group-hover:hidden" *ngIf="!isOpen"></fa-icon>
+      <fa-icon [icon]="faBarsStaggered" class="hidden group-hover:block" *ngIf="!isOpen"></fa-icon>
+      <fa-icon [icon]="faXmark" class="text-xl" *ngIf="isOpen"></fa-icon>
+    </span>
+  </button>
+  <div *ngIf="isOpen" >
+    <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'Nuevo Producto'}" (click)="actualPage = 'Nuevo Producto'; isOpen = false" class="w-full h-14 text-center uppercase bg-first-950/80 font-semibold text-second-50 rounded-t border-b border-first-300"> Nuevo Producto</button>   
+    <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'Administrar Productos'}" (click)="actualPage = 'Administrar Productos'; isOpen = false" class="w-full h-14 text-center uppercase bg-first-950/80 font-semibold text-second-50 border-b border-first-300">Administrar Productos</button>
+    <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'Administrar Promos'}" (click)="actualPage = 'Administrar Promos'; isOpen = false" class="w-full h-14 text-center uppercase bg-first-950/80 font-semibold text-second-50 border-b border-first-300">Administrar Promos</button>
+    <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'Disponibilidad'}" (click)="actualPage = 'Disponibilidad'; isOpen = false" class="w-full h-14 text-center uppercase bg-first-950/80 font-semibold text-second-50 border-b border-first-300">Disponibles</button>
+    <button [ngClass]="{'font-bold !text-white !bg-second-950 border border-first-50': actualPage === 'Reseñas'}" (click)="actualPage = 'Reseñas'; isOpen = false" class="w-full h-14 text-center uppercase bg-first-950/80 font-semibold text-second-50 border-b border-first-300">Reseñas</button>
+    <a href=" " class="w-full h-14 block text-center uppercase bg-first-950/80 leading-[3.5rem] font-semibold text-second-50"> Volver a la vista de usario</a>
+  </div>
 </nav>
-<app-upload *ngIf="actualPage === 'add'"></app-upload>
-<app-manage-products *ngIf="actualPage === 'manage'"></app-manage-products>
-<section *ngIf="actualPage === 'avalaibles'">
+<app-upload *ngIf="actualPage === 'Nuevo Producto'"></app-upload>
+<app-manage-products *ngIf="actualPage === 'Administrar Productos'"></app-manage-products>
+<section *ngIf="actualPage === 'Disponibilidad'">
   <div class="w-5/6 h-16 bg-second-900 border border-first-100  flex text-white justify-between items-center mx-auto px-2.5 rounded-t-md font-bold uppercase mb-2">
     <p class="w-4/6">Producto</p>
     <div class="w-2/6">
@@ -26,3 +39,5 @@
     <div class=""><h2 class="animate-pulse text-first-50 font-extrabold text-xl">Cargando productos</h2></div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-black via-slate-500 to-white p-[2px] animate-spin"><div class="w-full h-full bg-second-900 rounded-full"></div></div>
   </div>  
 </section>
+<app-reviews *ngIf="actualPage === 'Reseñas'"></app-reviews>
+<app-promos *ngIf="actualPage === 'Administrar Promos'"></app-promos>

@@ -2,6 +2,8 @@ import { Injectable, Type } from '@angular/core';
 import { Product } from '../models/products.model';
 import { createClient } from '@supabase/supabase-js'
 import { environment } from '../models/environment';
+import { Reviews } from '../models/reviews.model';
+import { Images } from '../models/images.model';
 
 @Injectable({
   providedIn: 'root'
@@ -283,4 +285,125 @@ export class ProductsService {
       console.log('Productd Deleted succesfully');
     }
   }
+
+  async getReviews(){
+    let { data, error } = await this.supabase
+      .from('Reviews')
+      .select('*')
+
+      if (error) {
+        console.error('Error fetching reviews:', error);
+        return [];
+      }
+      
+      return data as Reviews[]
+  
+  }
+
+  async getReviewByStatus(statusCol: string, statusValue: string | boolean){
+    let { data, error } = await this.supabase
+      .from('Reviews')
+      .select('*').eq(statusCol, statusValue )
+
+    if (error) {
+      console.error('Error fetching Reviews:', error);
+    }
+
+    return data as Reviews[]
+
+  }
+
+  async addReview(review: Reviews){
+    const { data, error } = await this.supabase
+    .from('Reviews')
+    .insert(review)
+    .select()
+    if (error) {
+      console.error('here we have an error adding the review error:', error)
+    }else{
+      console.log('review added');
+    }
+  }
+
+  async makePublic(id: number, value: boolean){
+    const { data, error } = await this.supabase
+    .from('Reviews')
+    .update({'publish': value})
+    .eq('id', id)
+    if (error) {
+      console.error('here we have an error on updateReview():', error)
+    }else{
+      console.log('Review updated');
+    }
+  }
+
+  async deleteReview(id: number){
+    const { error } = await this.supabase
+    .from('Reviews')
+    .delete()
+    .eq( 'id', id)
+    if (error) {
+      console.error('here we have an error on deleteReview():', error)
+    }else{
+      console.log('Review Deleted succesfully');
+    }
+  }
+
+  async addImagesNames(_name: string, db: string){
+    const { data, error } = await this.supabase
+    .from(db)
+    .insert({name: _name})
+    .select()
+    if (error) {
+      console.error('Error uploading image name:', error)
+    }else{
+      console.log('Image name:', _name,', added succesfully', data)
+    }
+  }
+
+  async deleteImage(ImgName: string, bucket: string, db: string){
+    const { data, error } = await this.supabase
+    .storage
+    .from(bucket)
+    .remove([`public/${ImgName}`])
+    if(error){
+      console.error('error deleting an image:', error)
+    }else{
+      console.log('Image Deleted Form The Bucket Succesfully', data);
+      
+    }
+    this.deleteImageName(ImgName, db)
+    
+  }
+
+  async deleteImageName(_imgName: string, _db: string){
+    const { status, error } = await this.supabase
+    .from(_db)
+    .delete()
+    .eq( 'name', _imgName)
+    if (error) {
+      console.error('Error Deleting The Image Name', error)
+    }
+  }
+
+  async getAllImages(dbName: string, bucket: string){
+    let { data, error } = await this.supabase
+      .from(dbName)
+      .select('*')
+      const _images: Images[] = []
+      if (data) {
+        for (let img of data) {
+          const newUrl = await this.getImageUrl(img.name)
+          const _img = new Images(img, newUrl, img.avalaible) 
+          _images.push(_img)
+        }
+      }
+    if (error) {
+      console.error('Error fetching Images:', error);
+    }
+    return _images as Images[];
+
+  }
+
+
 }

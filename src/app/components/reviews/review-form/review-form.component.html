@@ -1,0 +1,29 @@
+<form #review="ngForm" (ngSubmit)="addReview(review)" class="w-80 mx-auto mt-5 p-5 border border-first-300/20 hover:border-first-300 rounded-md">
+  <h1 class="text-first-500 text-2xl font-bold text-center mb-5 uppercase">Agregar Reseña</h1>
+  <div class="w-5/6 text-first-50 mx-auto mb-2 flex flex-col justify-start items-start">
+    <label for="clientName">Nombre:</label>
+    <input ngModel id="clientName" type="text" name="clientName" class="w-full h-8 rounded px-2 text-second-200/90 capitalize border border-second-300/40 hover:border hover:border-first-600" placeholder="Ej... Jhon Doe">
+  </div>
+  <div class="w-5/6 text-first-50 mx-auto mb-2 flex flex-col justify-start items-start">
+    <label for="rate">Calificacion:</label>
+    <div class="flex text-first-50 text-4xl mx-auto gap-2">
+      <fa-icon class="cursor-pointer" (click)="rate = 1" [ngClass]="{'text-yellow-200': rate >= 1}" [icon]="faStar"></fa-icon>
+      <fa-icon class="cursor-pointer" (click)="rate = 2" [ngClass]="{'text-yellow-200': rate >= 2}" [icon]="faStar"></fa-icon>
+      <fa-icon class="cursor-pointer" (click)="rate = 3" [ngClass]="{'text-yellow-200': rate >= 3}" [icon]="faStar"></fa-icon>
+      <fa-icon class="cursor-pointer" (click)="rate = 4" [ngClass]="{'text-yellow-200': rate >= 4}" [icon]="faStar"></fa-icon>
+      <fa-icon class="cursor-pointer" (click)="rate = 5" [ngClass]="{'text-yellow-200': rate === 5}" [icon]="faStar"></fa-icon>
+    </div>
+    <input [(ngModel)]="rate" id="rate" name="rate" type="number" class="hidden">
+  </div>
+  <div class="w-5/6 text-first-50 mx-auto mb-2 flex flex-col justify-start items-start">
+    <label for="review">Reseña:</label>
+    <textarea ngModel name="review" id="review" type="text" class="w-full min-h-[5rem] max-h-[12rem] rounded px-2 capitalize  text-second-200/90 border border-second-300/40 hover:border hover:border-first-600" placeholder="Ej... Exelente Servicio"></textarea>
+  </div>
+
+  <div class="w-5/6 text-first-50 mx-auto mb-5 flex flex-col justify-start items-start">
+    <label for="date">Fecha:</label>
+    <input ngModel id="date" name="date" type="date" lang="es" class="w-full text-second-300/90 h-8 rounded px-2 capitalize border border-second-300/40 hover:border hover:border-first-600">
+  </div>
+  <button class="w-5/6 h-9 mb-5 mx-auto block rounded uppercase bg-first-100/80 text-second-950 hover:bg-first-800 hover:text-first-50 font-extrabold border border-first-50">Enviar</button>
+  <p class="w-5/6 mx-auto text-center text-sm text-first-100 italic mb-2">Gracias por calificarnos, tu opinion es muy importante para nosotros.</p>
+</form>

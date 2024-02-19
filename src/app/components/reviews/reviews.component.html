@@ -1,0 +1,37 @@
+<section>
+  <app-review-form></app-review-form>
+  <p *ngIf="!reviews.length" class="text-center text-xl text-first-50">Aun no hay Reseñas.</p>
+  <div class="w-11/12 flex flex-col mx-auto gap-2 my-10">
+    <div *ngFor="let review of reviews" class="relative mt-2 mx-auto hover:shadow-md hover:bg-second-50 flex w-full flex-col rounded-xl bg-second-50 bg-clip-border text-gray-700 shadow-md border border-first-300/50 hover:border-first-300/80">
+      <div class="p-6">
+        
+        <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-first-50 antialiased">
+          {{ review.clientName }}
+        </h5>
+        <div class="flex text-first-50 text-5xl my-5 mx-auto gap-2">
+          <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 1}" [icon]="faStar"></fa-icon>
+          <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 2}" [icon]="faStar"></fa-icon>
+          <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 3}" [icon]="faStar"></fa-icon>
+          <fa-icon [ngClass]="{'text-yellow-200': review.rate >= 4}" [icon]="faStar"></fa-icon>
+          <fa-icon [ngClass]="{'text-yellow-200': review.rate === 5}" [icon]="faStar"></fa-icon>
+        </div>
+        <p class="block text-white font-sans text-base leading-relaxed text-inherit antialiased">
+          {{ review.review }}
+        </p>
+      </div>
+      <div class="w-5/6 mx-auto mb-2 flex justify-between items-start text-white">
+        <p class="font-bold cursor-default">Hacer Publica</p>
+        <label class="relative inline-flex cursor-pointer items-start mt-3 ml-3">
+          <input id="switch" type="checkbox" [(ngModel)]="review.publish" class="peer sr-only" (change)="makePublic(review.id!, review.publish!)"/>
+          <label for="switch" class="hidden"></label>
+          <div class="peer text-sm font-semibold h-10 w-[4.90rem] rounded-full border bg-second-400 after:absolute after:left-[2px] after:top-0.5 after:h-9 after:w-[2.30rem] after:rounded-full after:px-2 peer-checked:after:px-3 after:py-[0.37rem] after:border after:border-gray-300 after:bg-second-50 after:transition-all after:content-['No'] peer-checked:after:content-['Si'] peer-checked:bg-first-400 peer-checked:after:translate-x-full peer-checked:after:border-second-50 peer-focus:ring-green-300"></div>
+        </label>
+        <div class="w-5/6 mx-auto mb-2 flex flex-col justify-end items-end">
+					<p class="mr-5 pl-2 font-bold cursor-default">Eliminar</p>
+					<button (click)="deleteReview(review.id!)" class="flex h-9 w-[4.90rem] rounded-full justify-center items-center text-center leading-9 bg-first-300/20 border-first-300 border hover:border-first-500 hover:bg-first-200/50 transition gap-2"><fa-icon [icon]="faTrash"></fa-icon></button>
+				</div>
+      </div>
+    </div>
+  
+  </div>
+</section>

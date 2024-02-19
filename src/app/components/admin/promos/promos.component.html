@@ -1,0 +1,46 @@
+<form #promos="ngForm" class="w-full flex flex-col justify-center items-center mb-5 bg-second-100/20 text-white border border-first-300/50 p-5">
+  <h1 class="text-xl font-bold cursor-default">Agregar Promociones</h1>
+  <p class="italic mb-4 text-center text-white/80 cursor-default">Recuerda que el tamaño ideal para las imagenes es de 1291 x 384 pixeles</p>
+
+  <div  class="w-5/6 h-56 flex justify-center items-center mb-5 bg-first-100/30 rounded border border-second-200 hover:bg-first-100/50 hover:border-first-200 cursor-pointer">
+    <input type="file" name="w-slider-imgs" lang="Es" multiple id="wSliderImgs" class=" block w-4/6 cursor-pointer " ngModel (change)="onFileSelected($event)">
+  </div>
+
+  <div class="mb-5 text-white flex w-5/6 mx-auto">
+
+    <p class="font-bold py-2 mr-2">Publicar</p>
+    <label class="relative inline-flex cursor-pointer items-center">
+      <input id="switch" type="checkbox" name="avalaible" [(ngModel)]="avalaible" class="peer sr-only" (change)="avalaible"/>
+      <label for="switch" class="hidden"></label>
+      <div class="peer text-sm font-semibold h-10 w-[4.90rem] text-black rounded-full border bg-zinc-400 after:absolute after:left-[2px] after:top-0.5 after:h-9 after:w-[2.30rem] after:rounded-full after:px-2 peer-checked:after:px-3 after:py-[0.37rem] after:border after:border-gray-300 after:bg-white after:transition-all after:content-['No'] peer-checked:after:content-['Si'] peer-checked:bg-first-400/50 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
+    </label>
+  </div>
+  <button (click)="onFormSubmit(promos, 'welcome')" class="border border-first-300 bg-first-300/20 hove:border-first-500 hover:bg-first-400 hover:text-second-50 text-lg p-2 w-5/6 rounded font-base hover:font-semibold transition">Agregar Imagenes</button>
+  
+</form>
+<div class="text-second-800 bg-second-950/5 border border-second-300 hover:bg-first-500/5 hover:border-first-300 rounded body-font mb-5">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 text-white capitalize">Administra tus Promociones</h1>
+      <!-- <p class="lg:w-2/3 mx-auto leading-relaxed  text-white text-base capitalize">Acá Podras eliminar las imagenes</p> -->
+    </div>
+    <div class="flex flex-wrap -m-4">
+      <div class="w-full p-4 gap-2 flex flex-col md:flex-row">
+        <div class="flex relative md:w-20 md:hover:!w-[430px] group" *ngFor="let wImg of images; index as i">
+          <img alt="gallery" class="inset-0 w-full h-[192px] object-cover object-center rounded" src="{{ wImg.imgName }}">
+          <span class="h-[80px] w-full group-hover:flex flex-col items-center justify-center hidden px-3 absolute z-20 bg-gradient-to-b from-second-50 to-transparent rounded-md text-white font-semibold ">
+            Disponible: <br>
+            <label class="relative inline-flex cursor-pointer items-start mt-3 ml-3">
+              <input id="switch" type="checkbox" [(ngModel)]="wImg.avalaible" class="peer sr-only" />
+              <label for="switch" class="hidden"></label>
+              <div class="peer text-sm font-semibold h-10 w-[4.90rem] rounded-full border bg-second-400 after:absolute after:left-[2px] after:top-0.5 after:h-9 after:w-[2.30rem] after:rounded-full after:px-2 peer-checked:after:px-3 after:py-[0.37rem] after:border after:border-gray-300 after:bg-second-50 after:transition-all after:content-['No'] peer-checked:after:content-['Si'] peer-checked:bg-first-400 peer-checked:after:translate-x-full peer-checked:after:border-second-50 peer-focus:ring-green-300"></div>
+            </label>
+          </span>
+          <div class="absolute flex items-center justify-center z-10 w-full h-full border border-gray-200 bg-second-950/10 opacity-0 rounded hover:opacity-100">
+            <button (click)="deleteImage(wImg!, 'welcome-slider', i)" class="title-font text-xs hover:text-lg font-medium text-white/70 hover:text-second-700 py-2 px-4 bg-second-300/70 border border-white hover:bg-first-300/50 rounded group"><b class=" mr-3">Eliminar Imagen</b><fa-icon [icon]="faTrashCan" class="!text-white !group-hover:text-second-500"></fa-icon></button>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>

@@ -13,6 +13,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UploadComponent } from './components/admin/upload/upload.component';
 import { ManageProductsComponent } from './components/admin/manage-products/manage-products.component';
 import { HomeComponent } from './components/home/home.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewFormComponent } from './components/reviews/review-form/review-form.component';
+import { PromosComponent } from './components/admin/promos/promos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { HomeComponent } from './components/home/home.component';
     AdminComponent,
     UploadComponent,
     ManageProductsComponent,
-    HomeComponent
+    HomeComponent,
+    ReviewsComponent,
+    ReviewFormComponent,
+    PromosComponent
   ],
   imports: [
     BrowserModule,
